@@ -3,12 +3,11 @@
 import express from "express";
 import { MongoClient } from "mongodb";
 import * as dotenv from "dotenv";
-import cors  from "cors";
 import { booksRouter } from "./routes/books.js";
+import { usersRouter } from "./routes/users.js";
 
 dotenv.config();
 const app = express();
-app.use(cors());
 const PORT = process.env.PORT;
 
 //console.log(process.env.MONGO_URL);
@@ -121,6 +120,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/books", booksRouter);
+
+app.use("/users", usersRouter);
 
 app.listen(PORT, () => console.log("Server started on the port", PORT));
 
